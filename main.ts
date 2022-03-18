@@ -2,7 +2,11 @@ namespace SpriteKind {
     export const goal = SpriteKind.create()
 }
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
-	
+    let myDart: Dart = null
+    myDart.throwDart()
+})
+sprites.onOverlap(SpriteKind.Projectile, SpriteKind.goal, function (sprite, otherSprite) {
+    game.over(true)
 })
 scene.setBackgroundColor(7)
 let kicker = sprites.create(img`

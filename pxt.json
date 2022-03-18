@@ -2,7 +2,8 @@
     "name": "Our Awesome Project",
     "description": "",
     "dependencies": {
-        "device": "*"
+        "device": "*",
+        "darts": "*"
     },
     "files": [
         "main.blocks",

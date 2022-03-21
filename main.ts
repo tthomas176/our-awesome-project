@@ -5,6 +5,7 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     myFootball.throwDart()
 })
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.goal, function (sprite, otherSprite) {
+    info.changeScoreBy(1)
     game.over(true)
 })
 let myFootball: Dart = null

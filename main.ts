@@ -3,21 +3,31 @@ namespace SpriteKind {
     export const invis = SpriteKind.create()
 }
 controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
-    switchBackground = true
-    kicker.setFlag(SpriteFlag.Invisible, true)
-    invisPost.setFlag(SpriteFlag.Invisible, true)
-    post.setFlag(SpriteFlag.Invisible, true)
+    contract()
 })
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     myFootball.throwDart()
 })
+function contract () {
+    kicker.setFlag(SpriteFlag.Invisible, true)
+    invisPost.setFlag(SpriteFlag.Invisible, true)
+    post.setFlag(SpriteFlag.Invisible, true)
+    Distance = game.askForNumber("How far was the kick?", 2)
+    if (Distance <= 30) {
+        game.splash("Your new contract is 5 years 10 million")
+    } else {
+        if (Distance > 30) {
+            game.splash("Your new contract is 5 years 20 million")
+        }
+    }
+}
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.invis, function (sprite, otherSprite) {
     info.changeScoreBy(1)
     game.splash("ANDDDD ITSS GOOOOOD!!!!!!")
     game.splash("Press B to continue story...")
     pause(3000)
 })
-let switchBackground = false
+let Distance = 0
 let post: Sprite = null
 let invisPost: Sprite = null
 let myFootball: Dart = null
@@ -275,8 +285,3 @@ for (let index = 0; index < 3; index++) {
     kicker.y += 5
     pause(100)
 }
-game.onUpdateInterval(500, function () {
-    if (switchBackground) {
-        scene.setBackgroundImage(assets.image`Contract`)
-    }
-})
